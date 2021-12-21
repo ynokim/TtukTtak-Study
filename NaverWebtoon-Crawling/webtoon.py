@@ -20,7 +20,6 @@ print("웹툰 제목: " + webtoon_title)
 print("=====================================")
 
 os.chdir("./images")
-렬
 if not os.path.isdir(webtoon_title):
     print("[~] 다운로드 할 새로운 폴더를 생성합니다.")
     os.mkdir(webtoon_title)
