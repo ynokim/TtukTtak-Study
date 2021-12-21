@@ -3,6 +3,7 @@
 
 import hashlib
 import os
+from PIL import Image
 
 img_list = []
 count = 0
@@ -15,14 +16,13 @@ input_take = open(input_filename, 'r')
 
 while True:
     line = input_take.readline()
+    line = line.strip()
     img_list.append(line)
     if not line:
         break
+    #print(line)
     img_list[count] = line
     count += 1
-
-i = count
-i -= 1
 
 #input directory
 find_directory = input("Input Directory you want to find: ")
@@ -43,13 +43,17 @@ def compare_md5(text, count):
 for repeat in range(len(file_list)):
     with open(find_directory + '/' + file_list[repeat], 'rb') as file_take:
         file_reader = file_take.read(4096)
-    enc = hashlib.md5()
-    enc.update(file_reader)
-    enc_text = enc.hexdigest()
+        #print(file_reader)
 
-    for img_file in os.listdir("./images"):
+        extension = os.path.splitext()
+
+        enc = hashlib.md5()
+        enc.update(file_reader)
+        enc_text = enc.hexdigest()
         check = compare_md5(enc_text, count)
-        if check:
-            print(" %s 'S HASH IS MATCHED: [%s] " % (file_list[repeat], img_list[count_hash]))
-        else:
-            pass
+        #print(check)
+    if check:
+        print(" %s'S HASH [%s] IS MATCHED: [%s] " % (file_list[repeat], enc_text, img_list[count_hash]))
+    else:
+        print(" %s'S HASH [%s] IS NOT MATCHED: [%s] " % (file_list[repeat], enc_text, img_list[count_hash]))
+        pass
