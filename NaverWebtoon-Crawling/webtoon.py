@@ -3,6 +3,8 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 import os
+import glob
+from PIL import Image
 
 #Access Denied?
 open_naver = urllib.request.build_opener()
@@ -15,9 +17,10 @@ URL.close()
 
 webtoon_title = soup.find("div", {"class", "detail"}).find("h2").text.split()[0]
 print("웹툰 제목: " + webtoon_title)
+print("=====================================")
 
 os.chdir("./images")
-
+렬
 if not os.path.isdir(webtoon_title):
     print("[~] 다운로드 할 새로운 폴더를 생성합니다.")
     os.mkdir(webtoon_title)
@@ -33,8 +36,11 @@ site_img = site_div.findAll("img")
 webtoon_count = 1
 for count in site_img:
     download_path = count.get("src")
-    img_num = str(webtoon_count) + ".jpg"
-    urllib.request.urlretrieve(download_path, img_num)
+    if(webtoon_count < 10):
+        img_num = "0" + str(webtoon_count) + ".jpg"
+        urllib.request.urlretrieve(download_path, img_num)
+    else:
+        img_num = str(webtoon_count) + ".jpg"
+        urllib.request.urlretrieve(download_path, img_num)
     webtoon_count += 1
 print("[~] 다운로드가 완료되었습니다.")
-
