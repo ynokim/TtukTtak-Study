@@ -39,3 +39,4 @@ else:
 
 # 특정한 주소를 웹 브라우저에서 새 창으로 실행
 webbrowser.open_new_tab(kakao_map)
+webbrowser.open_new_tab(google_map)
