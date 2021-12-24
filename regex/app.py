@@ -43,5 +43,4 @@ with open("address.txt", "r") as file:
     for i in range(0, count):
         print("%s 주소의 코인은 다음과 같습니다: %s" % (text_list[i], address_list[i]))
 
-
 # /^bc/
