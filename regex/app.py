@@ -5,9 +5,9 @@ address_list = []
 count = 0
 
 # 맨 앞의 두 글자로 코인의 주소 특정
-btc_pattern = r"^bc"
-eth_pattern = r"^0x"
-rip_pattern = r"^rU"
+btc_pattern = r"^bc.{0,42}$"              #r"^bc"
+eth_pattern = r"^0x.{0,42}$"              #r"^0x"
+rip_pattern = r"^rU|^rs|^ra|^.{0,34}$"              #r"^rU|^ra|^rs"
 
 # address.txt 파일에 있는 원본 주소 리스트에 추가
 with open("address.txt", "r") as file:
